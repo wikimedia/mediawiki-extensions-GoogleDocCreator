@@ -1,6 +1,6 @@
 # GoogleDocCreator
 
-Creates a Google Doc in your Drive and embeds it to a wiki page using (https://www.mediawiki.org/wiki/Extension:GoogleDocTag)
+Creates a Google Doc in your Drive and embeds it to a wiki page
 
 ## Installation
 
@@ -9,8 +9,6 @@ Download API credentials from https://developers.google.com/drive/api/v3/quickst
 Set the path to your credentials.json file:
 
     $wgGoogleApiClientCredentialsPath = "$IP/extensions/GoogleDocCreator/credentials.json";
-
-
 
 Download this repo on your extensions folder
 
@@ -25,4 +23,3 @@ Use composer to install dependencies. Run the following command from your main M
 ## Usage
 
 Visit the special page Special:GoogleDocCreator on your wiki. You must be logged in as a sysop user.
-You must have GoogleDocTag installed for the embedding to work.

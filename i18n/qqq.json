@@ -1,9 +1,16 @@
 {
 	"@metadata": {
 		"authors": [
-			"Nischay Nahata"
+			"Nischay Nahata",
+			"Sanjay Thiyagarajan"
 		]
 	},
 	"googledoccreator": "GoogleDocCreator",
-	"GoogleDocCreator-desc": "{{desc|name=GoogleDocCreator|url=https://www.mediawiki.org/wiki/Extension:GoogleDocCreator}}"
+	"googledoccreator-desc": "{{desc|name=GoogleDocCreator|url=https://www.mediawiki.org/wiki/Extension:GoogleDocCreator}}",
+	"action-googledoccreator": "{{doc-action|googledoccreator}}",
+	"googledocs-success": "Success message after page creation",
+	"googledocs-enter-title": "Prompt for wiki page title field",
+	"googledocs-enter-authcode": "Prompt for google auth code",
+	"googledocs-get-authcode-btn": "Button label for getting auth code",
+	"googledocs-edit-summary": "Edit summary for google docs"
 }
