@@ -22,7 +22,7 @@
 		"GoogleDocCreator": "SpecialGoogleDocCreator"
 	},
 	"AutoloadClasses": {
-		"SpecialGoogleDocCreator": "SpecialGoogleDocCreator.php"
+		"SpecialGoogleDocCreator": "special/SpecialGoogleDocCreator.php"
 	},
 	"Hooks": {
 		"ParserFirstCallInit": "SpecialGoogleDocCreator::setParserHook"
