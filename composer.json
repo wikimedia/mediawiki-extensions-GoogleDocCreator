@@ -36,7 +36,8 @@
 		],
 		"fix": [
 			"minus-x fix .",
-			"phpcbf ."
+			"phpcbf .",
+			"phpcbf"
 		],
 		"phpcs": "phpcs -p -s ."
 	}
