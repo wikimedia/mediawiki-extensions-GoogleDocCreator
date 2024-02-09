@@ -1,7 +1,5 @@
 /* eslint-env node */
 module.exports = function ( grunt ) {
-	var conf = grunt.file.readJSON( 'extension.json' );
-
 	grunt.loadNpmTasks( 'grunt-eslint' );
 	grunt.loadNpmTasks( 'grunt-banana-checker' );
 
@@ -16,7 +14,10 @@ module.exports = function ( grunt ) {
 				'!vendor/**'
 			]
 		},
-		banana: conf.MessagesDirs
+		banana: {
+			options: { allowTrailingWhitespace: true },
+			all: 'i18n/'
+		}
 	} );
 
 	grunt.registerTask( 'test', [ 'eslint', 'banana' ] );
