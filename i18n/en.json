@@ -8,7 +8,7 @@
 	"googledoccreator": "GoogleDocCreator",
 	"googledoccreator-desc": "The GoogleDocCreator extension lets you create a Google Doc and embeds it to a wiki page.",
 	"action-googledoccreator": "create a Google Docs page",
-	"googledocs-success": "Page created successfully: ",
+	"googledocs-success": "Page created successfully:",
 	"googledocs-enter-title": "Enter wiki page title",
 	"googledocs-enter-authcode": "Enter auth code",
 	"googledocs-get-authcode-btn": "Click to get auth code",
