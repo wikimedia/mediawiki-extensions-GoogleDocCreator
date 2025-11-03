@@ -1,5 +1,9 @@
 <?php
 
+use MediaWiki\Html\Html;
+use MediaWiki\Linker\Linker;
+use MediaWiki\Title\Title;
+
 class SpecialGoogleDocCreator extends SpecialPage {
 	public function __construct() {
 		parent::__construct( 'GoogleDocCreator', 'googledoccreator' );
