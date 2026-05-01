@@ -2,6 +2,8 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
+use MediaWiki\Parser\Parser;
+use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 
 class SpecialGoogleDocCreator extends SpecialPage {
