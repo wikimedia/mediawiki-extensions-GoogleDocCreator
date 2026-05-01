@@ -6,7 +6,12 @@ use MediaWiki\Title\Title;
 
 class SpecialGoogleDocCreator extends SpecialPage {
 	public function __construct() {
-		parent::__construct( 'GoogleDocCreator', 'googledoccreator' );
+		parent::__construct( 'GoogleDocCreator' );
+	}
+
+	/** @inheritDoc */
+	public function getRestriction(): string {
+		return 'googledoccreator';
 	}
 
 	/**
