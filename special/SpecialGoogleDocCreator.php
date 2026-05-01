@@ -2,7 +2,6 @@
 
 use MediaWiki\Html\Html;
 use MediaWiki\Linker\Linker;
-use MediaWiki\Parser\Parser;
 use MediaWiki\SpecialPage\SpecialPage;
 use MediaWiki\Title\Title;
 
@@ -132,32 +131,5 @@ class SpecialGoogleDocCreator extends SpecialPage {
 		$out->addHTML( $this->msg( "googledocs-success" ) .
 		Linker::linkKnown( Title::newFromText( $wikipage_name ),
 		$wikipage_name, [ 'target' => '_blank' ] ) );
-	}
-
-	/**
-	 * Hook for parsing google document tag
-	 * @param Parser $parser
-	 */
-	public static function setParserHook( Parser $parser ) {
-		$parser->setHook( 'googledocument', 'SpecialGoogleDocCreator::renderDocument' );
-	}
-
-	/**
-	 * Embedding Google Document into the page body
-	 * @param string $input
-	 * @param array $args
-	 * @return string
-	 */
-	public static function renderDocument( $input, array $args ) {
-		return Html::element(
-			'iframe',
-			[
-				'src' => 'https://docs.google.com/document/d/' . rawurlencode( $args['id'] ),
-				'width' => '100%',
-				'height' => '1000px',
-				'frameBorder' => 0
-			],
-			''
-		);
 	}
 }

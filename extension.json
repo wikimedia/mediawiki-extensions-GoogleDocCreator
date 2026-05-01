@@ -24,8 +24,16 @@
 	"AutoloadClasses": {
 		"SpecialGoogleDocCreator": "special/SpecialGoogleDocCreator.php"
 	},
+	"AutoloadNamespaces": {
+		"MediaWiki\\Extension\\GoogleDocCreator\\": "includes/"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "MediaWiki\\Extension\\GoogleDocCreator\\Hooks"
+		}
+	},
 	"Hooks": {
-		"ParserFirstCallInit": "SpecialGoogleDocCreator::setParserHook"
+		"ParserFirstCallInit": "main"
 	},
 	"config": {
 		"GoogleApiClientCredentialsPath": ""
