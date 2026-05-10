@@ -19,12 +19,12 @@ class SpecialGoogleDocCreator extends SpecialPage {
 	 * @param string $par
 	 */
 	public function execute( $par ) {
-		$googleCredsPath = $this->getConfig()->get( "GoogleApiClientCredentialsPath" );
+		$googleCredsPath = $this->getConfig()->get( 'GoogleApiClientCredentialsPath' );
 		$this->setHeaders();
 		$request = $this->getRequest();
 		$out = $this->getOutput();
 
-		if ( !class_exists( "Google_Client" ) ) {
+		if ( !class_exists( Google_Client::class ) ) {
 			$out->addHTML( '<div class="errorbox">You must install Google_Client. 
 			Run "composer update" from your main directory.</div>' );
 			return;
@@ -42,7 +42,7 @@ class SpecialGoogleDocCreator extends SpecialPage {
 		$client->setAccessType( 'offline' );
 		$client->setRedirectUri( $this->getPageTitle()->getFullURL() );
 		$cache_object = ObjectCache::getInstance( CACHE_DB );
-		$accessToken = $cache_object->get( "google-doc-creator-access-token" );
+		$accessToken = $cache_object->get( 'google-doc-creator-access-token' );
 		if ( empty( $accessToken ) ) {
 			if ( empty( $request->getVal( 'code' ) ) ) {
 				// Request authorization from the user.
@@ -53,15 +53,15 @@ class SpecialGoogleDocCreator extends SpecialPage {
 					'action' => $this->getPageTitle()->getFullURL()
 				];
 				$out->addHTML(
-					Html::openElement( 'form', $formOpts ) . "<br>" .
-					Html::label( $this->msg( "googledocs-enter-authcode" ), "", [ "for" => "auth_code" ] ) .
-					"<br><br>" . Html::element( 'input',
-					[ "id" => "auth_code", "name" => "code", "type" => "text" ] ) .
-					Html::element( 'a', [ "href" => $authUrl, "target" => "_blank" ],
-					$this->msg( "googledocs-get-authcode-btn" ) ) . "<br><br>"
+					Html::openElement( 'form', $formOpts ) . '<br>' .
+					Html::label( $this->msg( 'googledocs-enter-authcode' ), '', [ 'for' => 'auth_code' ] ) .
+					'<br><br>' . Html::element( 'input',
+					[ 'id' => 'auth_code', 'name' => 'code', 'type' => 'text' ] ) .
+					Html::element( 'a', [ 'href' => $authUrl, 'target' => '_blank' ],
+					$this->msg( 'googledocs-get-authcode-btn' ) ) . '<br><br>'
 				);
 				$out->addHTML(
-					Html::submitButton( $this->msg( "htmlform-submit" ), [] ) .
+					Html::submitButton( $this->msg( 'htmlform-submit' ), [] ) .
 					Html::closeElement( 'form' )
 				);
 				return;
@@ -77,14 +77,14 @@ class SpecialGoogleDocCreator extends SpecialPage {
 				throw new MWException( implode( ', ', $accessToken ) );
 			}
 
-			$cache_object->set( "google-doc-creator-access-token", $accessToken, 600 );
+			$cache_object->set( 'google-doc-creator-access-token', $accessToken, 600 );
 		}
 		$client->setAccessToken( $accessToken );
 
 		// Refresh the token if it's expired.
 		if ( $client->isAccessTokenExpired() ) {
 			$client->fetchAccessTokenWithRefreshToken( $client->getRefreshToken() );
-			$cache_object->set( "google-doc-creator-access-token", $client->getAccessToken(), 600 );
+			$cache_object->set( 'google-doc-creator-access-token', $client->getAccessToken(), 600 );
 		}
 
 		if ( empty( $request->getVal( 'wikipage_name' ) ) ) {
@@ -94,13 +94,13 @@ class SpecialGoogleDocCreator extends SpecialPage {
 				'action' => $this->getPageTitle()->getFullUrl()
 			];
 			$out->addHTML(
-				Html::openElement( 'form', $formOpts ) . "<br>" .
-				Html::label( $this->msg( "googledocs-enter-title" ), "", [ "for" => "wikipage_name" ] ) . "<br><br>" .
-				Html::element( 'input', [ "id" => "wikipage_name",
-				"name" => "wikipage_name", "type" => "text" ] ) . "<br><br>"
+				Html::openElement( 'form', $formOpts ) . '<br>' .
+				Html::label( $this->msg( 'googledocs-enter-title' ), '', [ 'for' => 'wikipage_name' ] ) . '<br><br>' .
+				Html::element( 'input', [ 'id' => 'wikipage_name',
+				'name' => 'wikipage_name', 'type' => 'text' ] ) . '<br><br>'
 			);
 			$out->addHTML(
-				Html::submitButton( $this->msg( "htmlform-submit" ), [] ) .
+				Html::submitButton( $this->msg( 'htmlform-submit' ), [] ) .
 				Html::closeElement( 'form' )
 			);
 			return;
@@ -126,9 +126,9 @@ class SpecialGoogleDocCreator extends SpecialPage {
 		$title = Title::newFromText( $wikipage_name );
 		$article = new Article( $title );
 		$content = new WikitextContent( '<googledocument id="' . $fileId . '" />' );
-		$editSummary = $this->msg( "googledocs-edit-summary" )->inContentLanguage();
+		$editSummary = $this->msg( 'googledocs-edit-summary' )->inContentLanguage();
 		$article->getPage()->doUserEditContent( $content, $user, $editSummary );
-		$out->addHTML( $this->msg( "googledocs-success" ) .
+		$out->addHTML( $this->msg( 'googledocs-success' ) .
 		Linker::linkKnown( Title::newFromText( $wikipage_name ),
 		$wikipage_name, [ 'target' => '_blank' ] ) );
 	}
