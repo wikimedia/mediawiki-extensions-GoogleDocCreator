@@ -12,7 +12,7 @@ class Hooks implements ParserFirstCallInitHook {
 	 * @param Parser $parser
 	 */
 	public function onParserFirstCallInit( $parser ) {
-		$parser->setHook( 'googledocument', [ self::class, 'renderDocument' ] );
+		$parser->setHook( 'googledocument', self::renderDocument( ... ) );
 	}
 
 	/**
@@ -29,8 +29,7 @@ class Hooks implements ParserFirstCallInitHook {
 				'width' => '100%',
 				'height' => '1000px',
 				'frameBorder' => 0
-			],
-			''
+			]
 		);
 	}
 }
